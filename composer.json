@@ -1,0 +1,39 @@
+{
+    "name": "ibrahim-eng12/trackora",
+    "description": "Trackora - A powerful Laravel package to track and analyze website visitors with detailed statistics, browser detection, geolocation, and a beautiful dashboard.",
+    "keywords": [
+        "laravel",
+        "trackora",
+        "visitor",
+        "tracking",
+        "analytics",
+        "statistics",
+        "geolocation",
+        "browser-detection"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ibrahim",
+            "email": "ibrahim@himacode.com"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "illuminate/support": "^10.0|^11.0|^12.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "IbrahimEng12\\Trackora\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "IbrahimEng12\\Trackora\\TrackoraServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

@@ -1,0 +1,42 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create(config('trackora.table_name', 'trackora_visits'), function (Blueprint $table) {
+            $table->id();
+            $table->string('ip_address', 45)->index();
+            $table->text('user_agent')->nullable();
+            $table->string('browser', 50)->nullable()->index();
+            $table->string('platform', 50)->nullable()->index();
+            $table->string('device_type', 20)->nullable()->index();
+            $table->string('country', 100)->nullable()->index();
+            $table->string('city', 100)->nullable();
+            $table->string('page_visited', 500)->nullable()->index();
+            $table->string('referrer', 500)->nullable();
+            $table->string('session_id', 100)->nullable()->index();
+            $table->boolean('is_unique')->default(false)->index();
+            $table->foreignId('user_id')->nullable()->constrained()->nullOnDelete();
+            $table->timestamps();
+
+            // Composite index for common queries
+            $table->index(['created_at', 'is_unique']);
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists(config('trackora.table_name', 'trackora_visits'));
+    }
+};
